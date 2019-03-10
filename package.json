@@ -1,0 +1,26 @@
+{
+  "name": "vue-proper-collapse",
+  "version": "0.1.0",
+  "description": "Vue implementation of the content expand/collapse functionality.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DorianSyruss/vue-proper-collapse.git"
+  },
+  "keywords": [
+    "vue",
+    "collapsible",
+    "expandable",
+    "expand",
+    "collapse"
+  ],
+  "author": "Ivan Saric",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DorianSyruss/vue-proper-collapse/issues"
+  },
+  "homepage": "https://github.com/DorianSyruss/vue-proper-collapse#readme"
+}
