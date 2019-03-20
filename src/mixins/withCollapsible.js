@@ -32,6 +32,7 @@ export default (initialMaxHeight, containerRef, elRef) => ({
     }
   },
   mounted() {
+    if (!this.$refs[elRef]) return;
     this.childRefHeight = this.$refs[elRef].clientHeight;
     this.setMaxHeight(initialMaxHeight);
   }
