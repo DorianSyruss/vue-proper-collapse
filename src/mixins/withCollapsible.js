@@ -1,7 +1,7 @@
-export default (initialMaxHeight, containerRef, elRef) => ({
+export default (initialMaxHeight, elRef) => ({
   data() {
     return {
-      childRefHeight: 0,
+      refHeight: 0,
       isExpanded: false
     };
   },
@@ -13,7 +13,7 @@ export default (initialMaxHeight, containerRef, elRef) => ({
       `;
     },
     isExpandable_() {
-      return this.childRefHeight > initialMaxHeight;
+      return this.refHeight > initialMaxHeight;
     }
   },
   methods: {
@@ -21,19 +21,34 @@ export default (initialMaxHeight, containerRef, elRef) => ({
       this.setMaxHeight(height);
     },
     expand() {
-      this.setMaxHeight(this.childRefHeight);
+      this.setMaxHeight(this.refHeight);
     },
     setMaxHeight(height) {
-      this.$refs[containerRef].style.maxHeight = `${height}px`;
+      this.$refs[elRef].style.maxHeight = `${height}px`;
+    },
+    makeExpandable() {
+      if (!this.$refs[elRef]) return;
+      this.refHeight = this.$refs[elRef].scrollHeight;
+      this.setMaxHeight(initialMaxHeight);
     },
     _toggleCollapse() {
       this.isExpanded ? this.collapse() : this.expand();
       this.isExpanded = !this.isExpanded;
+    },
+    registerMutationObserver() {
+      const observer = new MutationObserver(() => {
+        this.refHeight = this.$refs[elRef].scrollHeight;
+      });
+      observer.observe(this.$refs[elRef], {
+        attributes: false,
+        characterData: true,
+        childList: false,
+        subtree: true
+      });
     }
   },
   mounted() {
-    if (!this.$refs[elRef]) return;
-    this.childRefHeight = this.$refs[elRef].clientHeight;
-    this.setMaxHeight(initialMaxHeight);
+    this.registerMutationObserver();
+    this.makeExpandable();
   }
 });
