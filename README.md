@@ -2,7 +2,7 @@
 Vue implementation of the content expand/collapse functionality in the form of factory function that produces vue compatible mixin.
 
 # Install
-```$ npm install vue-proper-collapse```
+```$ npm install vue-proper-collapse``` // No Longer Published //
 
 # Usage
 Import the mixin in your single file component.
